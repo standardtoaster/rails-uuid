@@ -1,0 +1,18 @@
+PATH
+  remote: .
+  specs:
+    rails-uuid (0.0.3)
+
+GEM
+  remote: http://rubygems.org/
+  specs:
+    rake (0.8.7)
+    uuidtools (2.1.1)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  rails-uuid!
+  rake
+  uuidtools

@@ -1,19 +1,19 @@
-require File.expand_path("../lib/newgem/version", __FILE__)
+require File.expand_path("../lib/rails-uuid/version", __FILE__)
 
 Gem::Specification.new do |s|
-  s.name        = "newgem"
-  s.version     = NewGem::VERSION
+  s.name        = "rails-uuid"
+  s.version     = RailsUUID::VERSION
   s.platform    = Gem::Platform::RUBY
-  s.authors     = ["Carl Lerche", "Yehuda Katz"]
-  s.email       = ["carlhuda@engineyard.com"]
-  s.homepage    = "http://github.com/carlhuda/newgem"
-  s.summary     = "A new gem templates"
+  s.authors     = ["Andrew Preece"]
+  s.email       = ["andrew.preece@gmail.com"]
+  s.homepage    = "http://www.lako.ca"
+  s.summary     = "Makes rails use UUID's for ID columns"
   s.description = "You're definitely going to want to replace a lot of this"
 
   s.required_rubygems_version = ">= 1.3.6"
 
   # lol - required for validation
-  s.rubyforge_project         = "newgem"
+  s.rubyforge_project         = "rails-uuid"
 
   # If you have other dependencies, add them here
   # s.add_dependency "another", "~> 1.2"
@@ -22,8 +22,6 @@ Gem::Specification.new do |s|
   s.files        = Dir["{lib}/**/*.rb", "bin/*", "LICENSE", "*.md"]
   s.require_path = 'lib'
 
-  # If you need an executable, add it here
-  # s.executables = ["newgem"]
 
   # If you have C extensions, uncomment this line
   # s.extensions = "ext/extconf.rb"
