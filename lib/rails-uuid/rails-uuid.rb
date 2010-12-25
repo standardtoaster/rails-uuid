@@ -3,7 +3,9 @@ module RailsUUID
   {
     'sqlite3' => 'TEXT(36) PRIMARY KEY NOT NULL',
     'sqlite' => 'TEXT(36) PRIMARY KEY NOT NULL',
-    'postgresql' => 'uuid primary key'
+    'postgresql' => 'uuid primary key',
+    'mysql' => 'CHAR(36) DEFAULT NULL PRIMARY KEY'
+    
   }
   module TableDefinitionUUID
     def create_table_without_uuid(table_name, options = {})
