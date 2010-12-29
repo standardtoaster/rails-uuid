@@ -22,6 +22,7 @@ module RailsUUID
         alias :belongs_to :references_with_uuid
       end
     end
+    #TODO: Add the ability to force UUID.
     def references_with_uuid(*args)
       options = args.extract_options!
       polymorphic = options.delete(:polymorphic)
