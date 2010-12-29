@@ -10,11 +10,17 @@ module RailsUUID
   
   UUID_DB_PK = 
   {
-    'sqlite3' => 'TEXT(36) PRIMARY KEY NOT NULL',
-    'sqlite' => 'TEXT(36) PRIMARY KEY NOT NULL',
-    'postgresql' => 'uuid primary key',
-    'mysql' => 'CHAR(36) DEFAULT NULL PRIMARY KEY'   
+    'sqlite3' => 'PRIMARY KEY NOT NULL',
+    'sqlite' => 'PRIMARY KEY NOT NULL',
+    'postgresql' => 'primary key',
+    'mysql' => 'DEFAULT NULL PRIMARY KEY'   
   }
+  #TODO: Cache this
+  def db_type
+    Rails.configuration.database_configuration[Rails.env]['adapter']
+  end
+  
+  #TODO: add t.uuid compatible method
   module TableDefinitionUUID
     def self.included(base)
       base.class_eval do
@@ -30,7 +36,7 @@ module RailsUUID
         pk_type = :string
         begin 
           if col.capitalize.constantize.pk_is_uuid?
-            pk_type = UUID_DB_PK_TYPE[Rails.configuration.database_configuration[Rails.env]['adapter']]
+            pk_type = :uuid
           end
         rescue NameError
         end
@@ -50,8 +56,9 @@ module RailsUUID
       #use native_database_types_without_uuid to get the list - some adapters use a constant, some don't.
       #dup() to unfreeze (postgresql freezes primary_key key in the hash)
       uuid_native_database_types = native_database_types_without_uuid.dup
+      uuid_native_database_types[:uuid] = UUID_DB_PK_TYPE[db_type]
       uuid_native_database_types[:primary_key_autoincrement] = uuid_native_database_types[:primary_key]
-      uuid_native_database_types[:primary_key] = UUID_DB_PK[Rails.configuration.database_configuration[Rails.env]['adapter']]
+      uuid_native_database_types[:primary_key] = "#{UUID_DB_PK_TYPE[db_type]} #{UUID_DB_PK[db_type]}"
       uuid_native_database_types
     end
     def create_table_without_uuid(table_name, options = {})
