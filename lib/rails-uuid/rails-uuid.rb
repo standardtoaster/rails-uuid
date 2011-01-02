@@ -35,11 +35,8 @@ module RailsUUID
       force_uuid = options.delete(:uuid)
       args.each do |col|
         pk_type = force_uuid ? :uuid : :string
-        pk_type = #copy from column implementation somehow
-       
-        
-        
-        unless force_uuid && defined?(col.capitalize) && col.capitalize.constantize.pk_is_uuid?
+        #copy from column implementation somehow  
+        if !force_uuid && defined?(col.capitalize) && !col.capitalize.constantize.pk_is_uuid?
             pk_type = :string
         end
         column("#{col}_id", pk_type, options)
