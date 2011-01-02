@@ -70,6 +70,9 @@ module RailsUUID
   			yield table_def if block_given?
       end
     end
+    def db_type
+      Rails.configuration.database_configuration[Rails.env]['adapter']
+    end
   end   
     
   module ActiveRecordUUID
