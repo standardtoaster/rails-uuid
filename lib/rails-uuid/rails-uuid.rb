@@ -74,12 +74,15 @@ module RailsUUID
     
   module ActiveRecordUUID
     def self.included(base)
+      base.extend ClassMethods
       base.class_eval do 
         before_create :set_id_as_new_uuid
       end
     end  
-    def self.pk_is_uuid?
-      self.class.columns_hash[self.class.primary_key].type != :integer
+    module ClassMethods
+      def self.pk_is_uuid?
+        self.class.columns_hash[self.class.primary_key].type != :integer
+      end
     end
     def set_id_as_new_uuid
       if self.pk_is_uuid?
