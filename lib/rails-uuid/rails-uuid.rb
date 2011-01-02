@@ -36,7 +36,7 @@ module RailsUUID
       args.each do |col|
         pk_type = force_uuid ? :uuid : :integer
         #copy from column implementation somehow  
-        if !force_uuid && Object.const_defined?(col.capitalize) && !col.capitalize.constantize.pk_is_uuid?
+        if !force_uuid && Object.const_defined?(col.to_s.capitalize) && !col.to_s.capitalize.constantize.pk_is_uuid?
             pk_type = :integer
         end
         column("#{col}_id", pk_type, options)
