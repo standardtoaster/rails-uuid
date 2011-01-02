@@ -40,7 +40,7 @@ module RailsUUID
             pk_type = :string
         end
         column("#{col}_id", pk_type, options)
-        column("#{col}_type", :string, polymorphic.is_a?(Hash) ? polymorphic : options) unless polymorphic.nil
+        column("#{col}_type", :string, polymorphic.is_a?(Hash) ? polymorphic : options) unless polymorphic.nil?
       end
     end
   end
