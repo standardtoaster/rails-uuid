@@ -32,13 +32,15 @@ module RailsUUID
     def references_with_uuid(*args)
       options = args.extract_options!
       polymorphic = options.delete(:polymorphic)
+      force_uuid = options.delete(:uuid)
       args.each do |col|
-        pk_type = :string
-        begin 
-          if col.capitalize.constantize.pk_is_uuid?
-            pk_type = :uuid
-          end
-        rescue NameError
+        pk_type = force_uuid ? :uuid : :string
+        pk_type = #copy from column implementation somehow
+       
+        
+        
+        unless force_uuid && defined?(col.capitalize) && col.capitalize.constantize.pk_is_uuid?
+            pk_type = :string
         end
         column("#{col}_id", pk_type, options)
         column("#{col}_type", :string, polymorphic.is_a?(Hash) ? polymorphic : options) unless polymorphic.nil
