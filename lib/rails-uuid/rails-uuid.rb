@@ -81,7 +81,7 @@ module RailsUUID
     end  
     module ClassMethods
       def pk_is_uuid?
-        self.class.columns_hash[self.class.primary_key].type != :integer
+        self.columns_hash[self.class.primary_key].type != :integer
       end
     end
     def set_id_as_new_uuid
