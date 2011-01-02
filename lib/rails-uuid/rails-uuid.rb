@@ -34,10 +34,10 @@ module RailsUUID
       polymorphic = options.delete(:polymorphic)
       force_uuid = options.delete(:uuid)
       args.each do |col|
-        pk_type = force_uuid ? :uuid : :string
+        pk_type = force_uuid ? :uuid : :integer
         #copy from column implementation somehow  
-        if !force_uuid && defined?(col.capitalize) && !col.capitalize.constantize.pk_is_uuid?
-            pk_type = :string
+        if !force_uuid && Object.const_defined?(col.capitalize) && !col.capitalize.constantize.pk_is_uuid?
+            pk_type = :integer
         end
         column("#{col}_id", pk_type, options)
         column("#{col}_type", :string, polymorphic.is_a?(Hash) ? polymorphic : options) unless polymorphic.nil?
