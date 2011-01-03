@@ -6,4 +6,3 @@ gem "rails-uuid", :path => File.expand_path("..", __FILE__)
 
 # These are development dependencies 
 gem "rake"
-gem "uuidtools"

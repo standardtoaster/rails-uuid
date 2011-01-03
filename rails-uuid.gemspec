@@ -16,8 +16,8 @@ Gem::Specification.new do |s|
   s.rubyforge_project         = "rails-uuid"
 
   # If you have other dependencies, add them here
-  # s.add_dependency "another", "~> 1.2"
-
+  s.add_dependency "uuidtools"
+  
   # If you need to check in files that aren't .rb files, add them here
   s.files        = Dir["{lib}/**/*.rb", "bin/*", "LICENSE", "*.md"]
   s.require_path = 'lib'
