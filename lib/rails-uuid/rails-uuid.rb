@@ -85,7 +85,7 @@ module RailsUUID
       end
     end
     def set_id_as_new_uuid
-      if self.pk_is_uuid?
+      if self.class.pk_is_uuid?
         self.id = UUIDTools::UUID.random_create.to_s
       end 
     end
