@@ -43,6 +43,11 @@ module RailsUUID
         column("#{col}_type", :string, polymorphic.is_a?(Hash) ? polymorphic : options) unless polymorphic.nil?
       end
     end
+    def uuid(*args)
+      options = args.extract_options!
+      column_names = args
+      column_names.each { |name| column(name, 'uuid', options) }
+    end
   end
   
   module AdapterUUID
