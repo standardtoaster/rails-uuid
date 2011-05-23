@@ -1,5 +1,5 @@
 module RailsUUID  
-  class Engine < Rails::Engine
+  class Railtie < Rails::Railtie
 
   # the adapter is not loaded until a connection is actually established, so we 
   # can't mangle NATIVE_DATABASE_TYPES until the end of initialization
