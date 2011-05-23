@@ -1,11 +1,11 @@
 module RailsUUID  
-  class Railtie < Rails::Railtie
+  class Engine < Rails::Engine
 
   # the adapter is not loaded until a connection is actually established, so we 
   # can't mangle NATIVE_DATABASE_TYPES until the end of initialization
   # The values from it should be read DURING the migarion process, so it should
   # still work.
-    initializer 'activerecord.uuid.pk.support' do |app|  
+    config.after_initialize do
       
       #only make the changes if the DB type is supported, otherwise log an error. 
       if UUID_DB_PK_TYPE.has_key? Rails.configuration.database_configuration[Rails.env]['adapter']
@@ -17,4 +17,5 @@ module RailsUUID
       end  
     end
   end
+
 end
